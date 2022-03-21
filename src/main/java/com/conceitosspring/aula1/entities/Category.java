@@ -1,5 +1,6 @@
 package com.conceitosspring.aula1.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -25,7 +26,8 @@ public class Category implements Serializable {
 
     private String name;
 
-    @OneToMany
+    @JsonIgnore
+    @ManyToMany(mappedBy = "categories")
     private Set<Product> products = new HashSet<>();
 
     public Category(Long id, String name) {
