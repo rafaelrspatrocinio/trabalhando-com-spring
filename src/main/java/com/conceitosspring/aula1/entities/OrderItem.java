@@ -1,6 +1,7 @@
 package com.conceitosspring.aula1.entities;
 
 import com.conceitosspring.aula1.entities.pk.OrderItemPK;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,8 +13,6 @@ import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Getter
-@Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "tb_order_item")
@@ -22,9 +21,12 @@ public class OrderItem implements Serializable {
     private static long serialVersionUID = 1l;
 
     @EmbeddedId
-    private OrderItemPK id;
+    private OrderItemPK id = new OrderItemPK();
 
+    @Getter @Setter
     private Integer quantity;
+
+    @Getter @Setter
     private Double price;
 
     public OrderItem(Order order, Product product,Integer quantity, Double price) {
@@ -35,6 +37,7 @@ public class OrderItem implements Serializable {
         this.price = price;
     }
 
+    @JsonIgnore
     public Order getOrder(){
         return id.getOrder();
     }
@@ -56,11 +59,11 @@ public class OrderItem implements Serializable {
         if (this == o) return true;
         if (!(o instanceof OrderItem)) return false;
         OrderItem orderItem = (OrderItem) o;
-        return Objects.equals(getId(), orderItem.getId());
+        return Objects.equals(id, orderItem.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId());
+        return Objects.hash(id);
     }
 }

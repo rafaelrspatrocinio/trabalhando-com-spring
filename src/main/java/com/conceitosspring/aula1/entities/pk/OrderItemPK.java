@@ -16,7 +16,6 @@ import java.io.Serializable;
 @EqualsAndHashCode
 @Embeddable
 public class OrderItemPK implements Serializable {
-
     private static long serialVersionUID = 1l;
 
     @ManyToOne
