@@ -20,6 +20,7 @@ import java.util.Set;
 public class Product implements Serializable {
     private static long serialVersionUID = 1l;
 
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
