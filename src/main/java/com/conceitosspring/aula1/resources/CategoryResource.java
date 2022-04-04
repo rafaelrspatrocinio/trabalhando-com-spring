@@ -49,5 +49,4 @@ public class CategoryResource {
         obj = service.update(id, obj);
         return ResponseEntity.ok().body(obj);
     }
-
 }
